@@ -1,0 +1,20 @@
+<h1>Categories</h1>
+<div>
+  <h3>Categories List:</h3>
+  <%= form_tag("/products", method: "get") do %>
+    <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), include_blank: true %>
+    <%= submit_tag "Go" %>
+  <% end %>
+</div>
+
+
+<% @products.each do |category_name, products| %>
+    <h2><%= category_name %></h2>
+    <% products.each do |product|%>
+      <h3><%= link_to product.name, product_path(product) %></h3>
+    <%end%>
+<%end%>
+    
+    
+ 
+

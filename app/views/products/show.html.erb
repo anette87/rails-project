@@ -1,0 +1,4 @@
+<h1><%= @product.name %></h1>
+<% @figures.each do |figure| %>
+<h2><%= link_to figure.name, product_figure_path(@product,figure) %></h2>
+<%end%>
