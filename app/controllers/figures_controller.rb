@@ -1,5 +1,10 @@
 class FiguresController < ApplicationController
 
+    def index
+        @figures = Figure.all
+    end 
+    
+    
     def show
         @figure = Figure.find(params[:id])
         if params[:product_id]
@@ -7,7 +12,9 @@ class FiguresController < ApplicationController
             if @figure == nil || @figure.product != product
                 redirect_to products_path, flash: {alert: "Figure not found. Try Again!"}
             end
-      end
+        end
+        @user_figure = UserFigure.new(figure:@figure, user_id:session[:user_id])
+      
       
     end 
 

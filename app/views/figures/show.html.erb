@@ -1,1 +1,31 @@
 <h1><%= @figure.name%></h1>
+
+<% if @user_figure.errors.any?%>
+    <div id= "error_explanation">
+        <h2><%= pluralize(@user_figure.errors.count, "error")%> Error: </h2>
+        <ul>
+            <% @user_figure.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+            <%end%>
+        </ul>
+    </div>
+<%end%>
+         
+
+<%= form_for(@user_figure) do |f| %>
+    <%= f.hidden_field :user_id %><br>
+    <%= f.hidden_field :figure_id %><br>
+    <%= f.submit "Add To Your Collection"%>
+<%end%>
+
+<p><%=link_to "Add a new comment", new_figure_comment_path(@figure)%><p>
+
+<h1>Comments: </h1>
+<% @figure.comments.each do |comment|%>
+    <ul>
+        <li>
+            <h3><%= comment.comment %></h3>
+            <p><%= "By: #{comment.user.username}" %></p>
+        </li>
+    </ul>
+<%end%>

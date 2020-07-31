@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+    # before_action :logged_in?
+
     def new
         @user = User.new
     end
@@ -15,6 +17,7 @@ class UsersController < ApplicationController
 
     def show
         @user = User.find(params[:id])
+        @figure = @user.figures
     end
 
     private
@@ -22,5 +25,6 @@ class UsersController < ApplicationController
     def user_params
         params.require(:user).permit(:username, :email, :password)
     end
+
 
 end

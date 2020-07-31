@@ -1,0 +1,17 @@
+<h1> FUNKO POP FIGURES LIST </h1>
+
+
+<% @figures.each do |figure|%>
+<ul>
+    <li>
+    <h2><%= link_to figure.name, figure_path(figure)%></h2>
+    <p><%= "#{figure.product.category.name}, #{figure.product.name}"%>
+    
+    
+    
+    
+    </p>
+    </li>
+</ul>
+    
+<%end%>

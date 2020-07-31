@@ -1,0 +1,6 @@
+<h1><%= link_to @comment.figure.name, figure_path(@comment.figure) %></h1>
+<h2><%= "Post by: #{@comment.user.username}" %></h2>
+<p><%= @comment.comment %></p><br>
+
+<p><%= link_to "Edit Comment", edit_comment_path%>
+<p><%=link_to "Delete Comment", comment_path, method: "DELETE"%><p><br>

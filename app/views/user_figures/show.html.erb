@@ -1,0 +1,10 @@
+<h1><%= @user.username%></h2>
+<ul>
+<% @user.user_figures.each do |user_figure|%>
+    <li>
+    <h2><%= link_to user_figure.figure.name, figure_path(user_figure.figure)%></h2>
+    <p><%= "#{user_figure.figure.product.category.name}, #{user_figure.figure.product.name}"%>
+    <p><%=link_to "Remove", user_figure_path(user_figure), method: "DELETE"%><p><br>
+    </li>
+    
+<%end%>

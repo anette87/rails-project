@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   
 
-  # resources :comments
-  # resources :user_figures
+  resources :comments
+  resources :user_figures
   # resources :figures
   # resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   root 'sessions#homepage'
 
   get '/auth/:provider/callback', to: 'sessions#omniauth'
-  get '/login', to: 'sessions#new'
+  get '/login', to: 'sessions#new', as: 'login'
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
@@ -26,14 +26,15 @@ Rails.application.routes.draw do
 
   resources :products, only: [:show] do
     resources :figures, only: [:show]
+  end
+  
+  resources :figures, only: [:show] do
+    resources :comments, only: [:new, :show]
   end 
 
   # get 'users/:id/catalog/new', to: 'user_figures#new'
   # post 'users/:id/catalog', to: 'user_figures#create'
-  # get 'users/:id/catalog/:id', to: 'user_figures#show'
+  get 'collection/:id', to: 'user_figures#show', as: 'collection'
+  # delete 'collection/:id', to: 'user_figures#delete'
 end
 
-# resources :authors, only: [:show] do
-#   # nested resource for posts
-#   resources :posts, only: [:show, :index]
-# end
