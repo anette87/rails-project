@@ -1,0 +1,11 @@
+<h1> Meet our users! </h1>
+
+<% @users.each do |user|%>
+
+    <% if user != current_user %>
+        <ul>
+            <h2><li><%= link_to user.username, user_path(user)%></li></h2>
+        </ul>
+    <%end%>
+<%end%>
+

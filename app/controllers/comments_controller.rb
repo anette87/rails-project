@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+    before_action :authentication_required
 
     def new
         @figure = Figure.find(params[:figure_id])
@@ -18,11 +19,17 @@ class CommentsController < ApplicationController
 
     def show
         @comment = Comment.find(params[:id])
+        if params[:figure_id]
+            figure = Figure.find_by(id: params[:figure_id])
+            if @comment == nil || @comment.figure != figure
+                redirect_to products_path, flash: {alert: "Figure not found. Try Again!"}
+            end
+        end
     end
 
     def edit
-        @comment = Comment.find(params[:id])   
-    end
+        @comment = Comment.find(params[:id])      
+    end 
     
     def update
         @comment = Comment.find(params[:id])

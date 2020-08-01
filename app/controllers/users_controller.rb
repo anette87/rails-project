@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
-    # before_action :logged_in?
+    before_action :authentication_required, except: [:new, :create]
 
+    def index
+        @users = User.all
+    end 
+    
     def new
         @user = User.new
     end

@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+    before_action :authentication_required
 
     def index
         @categories = Category.all

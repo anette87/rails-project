@@ -1,15 +1,22 @@
+<% if @user == current_user %>
 <h1>Welcome <%=@user.username%>!</h1>
-<h2>What you would like to do today?<h2>
 
-<% if @figure.length == 0 %>
-    <h3><%= link_to "Create your Funko POP Collection", products_path %></h3>
+
+    <% if @figure.length == 0 %>
+        <h3><%= link_to "Create your Funko POP Collection", products_path %></h3>
+    <%else%>
+        <h1> My Funko POP Collection: </h2>
+        <%= render 'collection' %>
+    <% end%>
+
+    <p><%= link_to "See all Funko POP Figures available", figures_path %></p>
+    <p><%= link_to "See other users Collections!", users_path %></p>
+    <p><%= link_to "Log out", logout_path, method: "delete" %></p>
+
 <% else %>
-    <h3><%= link_to "Go To Your Funko POP Collection", collection_path(@user) %></h3>
-<% end%>
-<h3><%= link_to "See all Funko POP Figures available", figures_path %></h3>
 
-
- <%= link_to "Log out", logout_path, method: "delete" %>
-
-
+    <h1><%= @user.username%></h2>
+    <%= render 'collection' %>
+   
+<%end%>
 

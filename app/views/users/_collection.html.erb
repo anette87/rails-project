@@ -1,0 +1,9 @@
+<% @user.user_figures.each do |user_figure|%>
+    <ul><li>
+        <h2><%= link_to user_figure.figure.name, figure_path(user_figure.figure)%></h2>
+        <p><%= "#{user_figure.figure.product.category.name}, #{user_figure.figure.product.name}"%>
+        <% if current_user == @user %>
+        <p><%=link_to "Remove", user_figure_path(user_figure), method: "DELETE"%><p><br>
+        <%end%>
+    </ul></li>
+<%end%>

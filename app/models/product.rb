@@ -2,6 +2,8 @@ class Product < ApplicationRecord
     belongs_to :category
     has_many :figures
 
+    validates :name, presence: true
+    
     def self.by_category(category_id)
         where(category: category_id)
     end

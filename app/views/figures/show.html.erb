@@ -24,7 +24,7 @@
 <% @figure.comments.each do |comment|%>
     <ul>
         <li>
-            <h3><%= comment.comment %></h3>
+            <h3><%= link_to comment.comment, figure_comment_path(comment.figure, comment) %></h3>
             <p><%= "By: #{comment.user.username}" %></p>
         </li>
     </ul>

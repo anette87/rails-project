@@ -1,4 +1,5 @@
 class UserFiguresController < ApplicationController
+    before_action :authentication_required, expect: 
 
     def create
         @user_figure = UserFigure.new(user_figures_params)
@@ -11,15 +12,16 @@ class UserFiguresController < ApplicationController
         end 
     end 
 
-    def show 
-        @user = User.find(params[:id])
-    end
-    
     def destroy
         @user_figure = UserFigure.find(params[:id])
-        @user_figure.destroy
-        flash[:notice] = "Figure removed from your collection."
-        redirect_to collection_path(@user_figure.user)
+        if current_user == @user_figure.user 
+            @user_figure.destroy
+            flash[:notice] = "Figure removed from your collection."
+            redirect_to collection_path(@user_figure.user)
+        else
+            flash[:notice] = "Request not authorized."
+            redirect_to user_path(current_user)
+        end
     end
 
     private

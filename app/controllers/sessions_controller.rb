@@ -1,7 +1,11 @@
 class SessionsController < ApplicationController
+    before_action :authentication_required, except: [:homepage, :new, :create]
 
     
     def homepage
+        if logged_in?
+            redirect_to user_path(current_user)
+        end   
     end
 
     def new

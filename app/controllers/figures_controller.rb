@@ -1,4 +1,5 @@
 class FiguresController < ApplicationController
+    before_action :authentication_required
 
     def index
         @figures = Figure.all
