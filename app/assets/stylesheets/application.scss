@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+ @import "bootstrap";
+
+ .blue-box{
+     background-color: #007bff;
+     padding: 25px;
+ }
+ .white-background{
+     background-color: #ffffff;
+     padding: 25px;
+ }
+
+ .funko-background{
+     background-image: url("http://localhost:3000/assets/background2.jpg");
+     padding: 20px;
+ }

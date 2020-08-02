@@ -1,19 +1,32 @@
-<h1>Let's add some figures!!!</h1>
-<div>
-  <h3>Categories List:</h3>
-  <%= form_tag("/products", method: "get") do %>
-    <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), include_blank: true %>
-    <%= submit_tag "Go" %>
-  <% end %>
+<div class="blue-box">
+    <div class="funko-background">
+        <div class="white-background text-center m-4">
+
+
+            <p><%= link_to "Back to Homepage", user_path(current_user) %><p><br>
+
+            <h1 class="font-weight-bold mb-4">Let's add some figures!!!</h1>
+            <%=image_tag("banner.jpg", style:"width:100%;")%>
+            <div>
+              <h3 class="m-4">Categories List:</h3>
+              <%= form_tag("/products", method: "get") do %>
+                <%= select_tag "category", options_from_collection_for_select(@categories, "id", "name"), include_blank: true %>
+                <%= submit_tag "Go", class: "btn btn-primary" %>
+              <% end %>
+            </div>
+
+
+            <% @products.each do |category_name, products| %>
+                <h2 class="m-4 font-weight-bold"><%= category_name %></h2>
+                <% products.each do |product|%>
+                  <h3 class="m-2"><%= link_to product.name, product_path(product) %></h3>
+                <%end%>
+                <%end%>
+        </div>
+    </div>
 </div>
 
 
-<% @products.each do |category_name, products| %>
-    <h2><%= category_name %></h2>
-    <% products.each do |product|%>
-      <h3><%= link_to product.name, product_path(product) %></h3>
-    <%end%>
-<%end%>
     
     
  

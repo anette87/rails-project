@@ -14,9 +14,7 @@ class FiguresController < ApplicationController
                 redirect_to products_path, flash: {alert: "Figure not found. Try Again!"}
             end
         end
-        @user_figure = UserFigure.new(figure:@figure, user_id:session[:user_id])
-      
-      
+        @user_figure = UserFigure.find_or_initialize_by(figure: @figure, user: current_user)   
     end 
 
 end

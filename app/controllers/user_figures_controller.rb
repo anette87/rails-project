@@ -17,7 +17,7 @@ class UserFiguresController < ApplicationController
         if current_user == @user_figure.user 
             @user_figure.destroy
             flash[:notice] = "Figure removed from your collection."
-            redirect_to collection_path(@user_figure.user)
+            redirect_to user_path(@user_figure.user)
         else
             flash[:notice] = "Request not authorized."
             redirect_to user_path(current_user)

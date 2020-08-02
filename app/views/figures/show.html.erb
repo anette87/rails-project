@@ -1,31 +1,44 @@
-<h1><%= @figure.name%></h1>
+<div class="blue-box">
+    <div class="funko-background">
+        <div class="white-background border border-primary  m-4">
+            <div class="row">
+                <div class="col-12 col-md-5 text-center">
+                    <h1 class="m-4"><%= @figure.name%></h1>
+                    <%=image_tag("figures/#{@figure.image_name}", class: "figure-image m-4")%>
 
-<% if @user_figure.errors.any?%>
-    <div id= "error_explanation">
-        <h2><%= pluralize(@user_figure.errors.count, "error")%> Error: </h2>
-        <ul>
-            <% @user_figure.errors.full_messages.each do |msg| %>
-            <li><%= msg %></li>
-            <%end%>
-        </ul>
+                    <%= render "layouts/errors", object: @user_figure%>
+                                
+                    <% if @user_figure.user.figures.include?(@figure) %>
+                        <p><%=link_to "Remove", user_figure_path(@user_figure), method: "DELETE"%><p>     
+                    <%else%>
+                        <%= form_for(@user_figure) do |f| %>
+                            <%= f.hidden_field :user_id %>
+                            <%= f.hidden_field :figure_id %>
+                            <%= f.submit "Add To Your Collection", class: "btn btn-primary mb-3"%>
+                        <%end%>
+                    <%end%>
+                </div>
+                <div class="col-12 col-md-7">
+                <h3 class="m-4"><%=link_to "Add a new comment", new_figure_comment_path(@figure)%><h3>
+
+                <h1 class="m-3">Comments: </h1>
+                <% @figure.comments.each do |comment|%>
+                    <ul>
+                        <li>
+                            <% if current_user == comment.user %>
+                                <h3><%= link_to comment.comment, figure_comment_path(comment.figure, comment) %></h3>
+                                <p><%= "By: #{comment.user.username}" %></p>
+                            <%else%>
+                                <h3><%= comment.comment%></h3>
+                                <p><%= "By: #{comment.user.username}" %></p>
+                            <%end%>
+                        </li>
+                    </ul>
+                <%end%>
+            </div>
+            </div>
+            <p class="text-right"><%= link_to "Back to Catalog", products_path %><p>
+            <p class="text-right"><%= link_to "Back to Homepage ", user_path(current_user) %><p>
+        </div>
     </div>
-<%end%>
-         
-
-<%= form_for(@user_figure) do |f| %>
-    <%= f.hidden_field :user_id %><br>
-    <%= f.hidden_field :figure_id %><br>
-    <%= f.submit "Add To Your Collection"%>
-<%end%>
-
-<p><%=link_to "Add a new comment", new_figure_comment_path(@figure)%><p>
-
-<h1>Comments: </h1>
-<% @figure.comments.each do |comment|%>
-    <ul>
-        <li>
-            <h3><%= link_to comment.comment, figure_comment_path(comment.figure, comment) %></h3>
-            <p><%= "By: #{comment.user.username}" %></p>
-        </li>
-    </ul>
-<%end%>
+</div>

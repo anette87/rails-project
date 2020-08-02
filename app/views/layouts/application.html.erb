@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RailsProject</title>
+    <title>FUNKO POP CATALOG</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
   </head>
 
   <body>
-    
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
-    <%= yield %>
+    <div class="container my-5">
+        <% if !flash.empty?%>
+        <div class="alert alert-secondary" role="alert">
+          <% flash.each do |name, msg| -%>
+            <%= content_tag :div, msg%>
+          <%end%>
+        </div>
+        <%end%>
+      <%= yield %>
+    </div>
   </body>
 </html>

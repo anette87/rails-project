@@ -1,4 +1,10 @@
-<h1><%= @product.name %></h1>
-<% @figures.each do |figure| %>
-<h2><%= link_to figure.name, product_figure_path(@product,figure) %></h2>
-<%end%>
+<div class="blue-box">
+        <div class="white-background text-center m-4">
+
+            <h1 class="m-4"><%= @product.name %></h1>
+            <% @figures.each do |figure| %>
+            <h2 class="m-4"><%= link_to figure.name, product_figure_path(@product,figure) %></h2>
+            <%end%>
+            <p class="m-4"><%= link_to "Back to Catalog", products_path %><p>
+        </div>
+</div>

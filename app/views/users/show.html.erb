@@ -1,22 +1,30 @@
-<% if @user == current_user %>
-<h1>Welcome <%=@user.username%>!</h1>
+<div class="blue-box">
+    <div class="funko-background">
+        <div class="white-background text-center border border-primary m-4">
+
+            <% if @user == current_user %>
+            <h1 class="m-4">Welcome <%=@user.username%>!</h1>
+            <%=image_tag("funko_image.png")%>
 
 
-    <% if @figure.length == 0 %>
-        <h3><%= link_to "Create your Funko POP Collection", products_path %></h3>
-    <%else%>
-        <h1> My Funko POP Collection: </h2>
-        <%= render 'collection' %>
-    <% end%>
+                <% if @figure.length == 0 %>
+                    <h3 class="m-4"><%= link_to "Create your Funko POP Collection", products_path %></h3>
+                <%else%>
+                    <h1 class="m-4"> My Funko POP Collection: </h2>
+                    <%= render 'collection' %>
+                <% end%>
 
-    <p><%= link_to "See all Funko POP Figures available", figures_path %></p>
-    <p><%= link_to "See other users Collections!", users_path %></p>
-    <p><%= link_to "Log out", logout_path, method: "delete" %></p>
+                <p class="m-4"><%= link_to "See all Funko POP Figures available", figures_path %></p>
+                <p class="m-4"><%= link_to "See other users Collections!", users_path %></p>
+                <p class="m-4"><%= link_to "Log out", logout_path, method: "delete" %></p>
 
-<% else %>
-
-    <h1><%= @user.username%></h2>
-    <%= render 'collection' %>
-   
-<%end%>
-
+            <% else %>
+                <p><%= link_to "Back to all users", users_path %><p>
+                <h1><%= @user.username%></h2>
+                <%= render 'collection' %>
+                
+            
+            <%end%>
+        </div>
+    </div>
+</div>

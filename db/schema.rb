@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2020_07_27_220551) do
   create_table "figures", force: :cascade do |t|
     t.string "name"
     t.integer "product_id"
+    t.string "image_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

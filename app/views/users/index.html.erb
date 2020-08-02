@@ -1,11 +1,15 @@
-<h1> Meet our users! </h1>
+<div class="blue-box">
+    <div class="white-background text-left">
+        <p><%= link_to "Back to Homepage", user_path(current_user) %><p><br>
+        <h1 class="m-4"> Meet our users! </h1>
 
-<% @users.each do |user|%>
+        <% @users.each do |user|%>
 
-    <% if user != current_user %>
-        <ul>
-            <h2><li><%= link_to user.username, user_path(user)%></li></h2>
-        </ul>
-    <%end%>
-<%end%>
-
+            <% if user != current_user %>
+                <ul>
+                    <h2><li><%= link_to user.username, user_path(user)%></li></h2>
+                </ul>
+            <%end%>
+        <%end%>
+    </div>
+</div>

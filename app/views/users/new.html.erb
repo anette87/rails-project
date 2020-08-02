@@ -1,13 +1,26 @@
-<h1>Sign Up Here</h1>
+<div class="blue-box">
+    <div class="white-background">
+        <h1>Sign Up Here</h1>
 
-<%# <%= render partial: '/shared/errors', locals: {obj: @user }%> 
+        <%= render("layouts/errors", object: @user)%>
 
-<%= form_with(model: @user, url:'/signup', local: true) do |f|%>
-    <%= f.label :username %>
-    <%= f.text_field :username %><br><br>
-    <%= f.label :email %>
-    <%= f.email_field :email %><br><br>
-    <%= f.label :password %>
-    <%= f.password_field :password %><br><br>
-    <%= f.submit "Sign Up"%>
-<% end %>
+
+        <%= form_with(model: @user, url:'/signup', local: true) do |f|%>
+            <div class="form-group">
+                <%= f.label :username %>
+                <%= f.text_field :username, class: "form-control"%>
+            </div>
+            <div class="form-group">
+                <%= f.label :email %>
+                <%= f.email_field :email, class: "form-control" %>
+            </div>
+            <div class="form-group">
+                <%= f.label :password %>
+                <%= f.password_field :password, class: "form-control" %>
+            </div>
+            <%= f.submit "Sign Up", class: "btn btn-primary mb-3"%>
+        <% end %>
+
+        <%= link_to "Back To Homepage", root_path%>
+    </div>
+</div>
