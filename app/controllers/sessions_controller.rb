@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-    before_action :authentication_required, except: [:homepage, :new, :create]
+    before_action :authentication_required, except: [:homepage, :new, :create, :omniauth]
 
     
     def homepage
