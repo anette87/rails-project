@@ -10,5 +10,7 @@ class Product < ApplicationRecord
 
     def self.grouped(collection)
         collection.group_by{ |product| product.category.name}
-    end 
+    end
+    
+    
 end

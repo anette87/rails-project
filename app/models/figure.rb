@@ -7,4 +7,14 @@ class Figure < ApplicationRecord
 
     validates :name, presence: true
 
+    def self.search_by_name(figure_name) 
+        where('name LIKE ?', "%#{figure_name}%")#LIKE ? let you search for name same or similar to the user input
+    end
+
+    
+    # def self.search_by_name(figure_name) 
+    #     where(name: figure_name)
+    # end
+     
+
 end

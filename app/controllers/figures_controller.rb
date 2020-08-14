@@ -2,8 +2,12 @@ class FiguresController < ApplicationController
     before_action :authentication_required
 
     def index
-        @figures = Figure.all
-    end 
+        if params[:search].present? 
+            @figures = Figure.search_by_name(params[:search])
+        else
+            @figures = Figure.all 
+        end
+    end
     
     
     def show

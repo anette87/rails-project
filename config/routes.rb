@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :categories
   resources :products
   resources :figures
-  resources :comments
+  resources :comments, except: [:new]
   resources :user_figures
 
   get '/auth/:provider/callback', to: 'sessions#omniauth'

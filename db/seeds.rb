@@ -66,7 +66,7 @@ spiderman = Figure.create(name:"Spider Man",product: marvel ,image_name: "spider
 rocketandgroot = Figure.create(name:"Rocket and Groot",product: marvel ,image_name: "rocketandgroot.jpg")
 
 #Heroes - DC 
-aquaman = Figure.create(name:"Aquaman",product: dccomics ,image_name: "aguaman.jpg")
+aquaman = Figure.create(name:"Aquaman",product: dccomics ,image_name: "aquaman.jpg")
 batman = Figure.create(name:"Batman",product: dccomics ,image_name:"batman.jpg")
 flash = Figure.create(name:"Flash",product: dccomics ,image_name: "flash.jpg")
 robin = Figure.create(name:"Robin",product: dccomics ,image_name: "robin.jpg")

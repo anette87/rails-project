@@ -3,11 +3,15 @@
 
         <p><%= link_to "Back to Homepage", user_path(current_user) %><p>
         <h1 class="m-4"> FUNKO POP FIGURES LIST </h1>
-
+        <h2> Search by Figure Name </h2>
+        <%= form_tag(figures_path, method: :get) do %>
+            <%= search_field_tag :search %>
+            <%= submit_tag "Search" %>
+        <%end%>
         <ul>
             <% @figures.each do |figure|%>
                 <li>
-                <h2><%= link_to figure.name, figure_path(figure)%></h2>
+                <h2 class="m-4"><%= link_to figure.name, figure_path(figure)%></h2>
                 <p><%= "#{figure.product.category.name}, #{figure.product.name}"%></p>
                 </li>
             <%end%>
