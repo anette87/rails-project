@@ -8,14 +8,19 @@
             <%= search_field_tag :search %>
             <%= submit_tag "Search" %>
         <%end%>
-        <ul>
-            <% @figures.each do |figure|%>
-                <li>
-                <h2 class="m-4"><%= link_to figure.name, figure_path(figure)%></h2>
-                <p><%= "#{figure.product.category.name}, #{figure.product.name}"%></p>
-                </li>
-            <%end%>
-        </ul>
+
+        <% if @figures.any? %>
+            <ul>
+                <% @figures.each do |figure|%>
+                    <li>
+                    <h2 class="m-4"><%= link_to figure.name, figure_path(figure)%></h2>
+                    <p><%= "#{figure.product.category.name}, #{figure.product.name}"%></p>
+                    </li>
+                <%end%>
+            </ul>
+        <% else %>
+            <p class="mt-4">No figures found.</p>
+        <% end %>
     </div>
 </div>
 
